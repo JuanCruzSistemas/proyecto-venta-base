@@ -6,17 +6,14 @@ export class Categoria {
     private constructor(
         private id: number | null,
         private nombre: string,
-        private creadoEn: Date
+        private creadoEn: Date = new Date()
     ) {}
 
     public static create(data: CreateCategoriaInput): Categoria {
         this.validate(data.nombre);
-        const ahora = new Date();
-        
         return new Categoria(
             null,
-            data.nombre,
-            ahora
+            data.nombre
         );
     }
 
