@@ -1,11 +1,11 @@
 import { ApplicationException } from "../../../../common/application/exceptions/application-exception";
 import { AppErrorCode } from "../../../../common/exceptions/app-error-code.enum";
 
-export class CategoriaNoEncontradaException extends ApplicationException {
+export class NombreProductoDuplicadoException extends ApplicationException {
     constructor() {
         super(
-            'Categoria no encontrada',
-            AppErrorCode.NOT_FOUND
+            'Nombre de producto duplicado',
+            AppErrorCode.CONFLICT
         );
     }
 }

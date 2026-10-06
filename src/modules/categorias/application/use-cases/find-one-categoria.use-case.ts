@@ -4,7 +4,7 @@ import { type ICategoriasRepository, CATEGORIAS_REPOSITORY } from "../../domain/
 
 import { CategoriaResponse } from "../responses/categoria.response";
 import { CategoriaResponseMapper } from "../mappers/categoria-response.mapper";
-import { CategoriaNoEncontrada } from "../exceptions/categoria-no-encontrada.exception";
+import { CategoriaNoEncontradaException } from "../exceptions/categoria-no-encontrada.exception";
 
 export class FindOneCategoriaUseCase {
     constructor(
@@ -15,7 +15,7 @@ export class FindOneCategoriaUseCase {
     async execute(id: number): Promise<CategoriaResponse> {
         const categoria = await this.repo.findOneById(id);
         if (!categoria) {
-            throw new CategoriaNoEncontrada();
+            throw new CategoriaNoEncontradaException();
         }
 
         return CategoriaResponseMapper.toResponse(categoria);

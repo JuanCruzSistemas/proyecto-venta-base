@@ -1,5 +1,7 @@
 import { Body, Controller, Get, NotImplementedException, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
 
+import { ManageProductoFacade } from "../../../../../processes/manage-producto/facades/manage-producto.facade";
+
 import { ProductosFacade } from "../../../application/facade/productos.facade";
 import { CreateProductoDto, FiltroActivoDto, UpdateProductoDto } from "../../../application/dtos";
 import { ProductoResponse } from "../../../application/responses/producto.response";
@@ -7,12 +9,13 @@ import { ProductoResponse } from "../../../application/responses/producto.respon
 @Controller('productos')
 export class ProductosController {
     constructor(
-        private readonly facade: ProductosFacade
+        private readonly facade: ProductosFacade,
+        private readonly manageFacade: ManageProductoFacade
     ) {}
 
     @Post()
     async create(@Body() dto: CreateProductoDto): Promise<ProductoResponse> {
-        throw new NotImplementedException()
+        return this.manageFacade.create(dto);
     }
 
     @Get()

@@ -8,4 +8,5 @@ export interface IProductosRepository {
     findOneById(id: number): Promise<Producto | null>;
     update(data: Producto): Promise<Producto>;
     countByCategoria(categoriaId: number): Promise<number>;
+    existsByNombre(nombre: string): Promise<boolean>;
 }

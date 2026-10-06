@@ -9,4 +9,5 @@ export interface ICategoriasRepository {
     update(data: Categoria): Promise<Categoria>;
     remove(categoria: Categoria): Promise<void>;
     existsByNombre(nombre: string): Promise<boolean>;
+    existsById(id: number): Promise<boolean>;
 }

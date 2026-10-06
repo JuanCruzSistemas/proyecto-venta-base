@@ -39,4 +39,8 @@ export class CategoriasRepository implements ICategoriasRepository {
     async existsByNombre(nombre: string): Promise<boolean> {
         return this.repo.actual.existsBy(CategoriaEntity, { nombre });
     }
+
+    async existsById(id: number): Promise<boolean> {
+        return this.repo.actual.existsBy(CategoriaEntity, { id });
+    }
 }

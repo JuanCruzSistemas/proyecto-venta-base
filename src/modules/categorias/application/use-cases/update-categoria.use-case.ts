@@ -5,7 +5,7 @@ import { type ICategoriasRepository, CATEGORIAS_REPOSITORY } from "../../domain/
 import { UpdateCategoriaDto } from "../dtos/update-categoria.dto";
 import { CategoriaResponse } from "../responses/categoria.response";
 import { CategoriaResponseMapper } from "../mappers/categoria-response.mapper";
-import { CategoriaNoEncontrada } from "../exceptions/categoria-no-encontrada.exception";
+import { CategoriaNoEncontradaException } from "../exceptions/categoria-no-encontrada.exception";
 import { NombreCategoriaDuplicadoException } from "../exceptions/nombre-duplicado.exception";
 
 @Injectable()
@@ -18,7 +18,7 @@ export class UpdateCategoriaUseCase {
     async execute(id: number, dto: UpdateCategoriaDto): Promise<CategoriaResponse> {
         const categoria = await this.repo.findOneById(id);
         if (!categoria) {
-            throw new CategoriaNoEncontrada();
+            throw new CategoriaNoEncontradaException();
         }
 
         if (!dto.nombre) {

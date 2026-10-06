@@ -44,4 +44,8 @@ export class ProductosRepository implements IProductosRepository {
         });
         return count;
     }
+
+    async existsByNombre(nombre: string): Promise<boolean> {
+        return this.gestor.actual.existsBy(ProductoEntity, { nombre });
+    }
 }

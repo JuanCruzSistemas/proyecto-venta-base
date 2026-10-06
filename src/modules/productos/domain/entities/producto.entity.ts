@@ -1,3 +1,4 @@
+import { UpdateProductoInput } from "../inputs/update-producto.interface";
 import { Precio } from "../value-objects/precio.vo";
 
 export class Producto {
@@ -9,6 +10,12 @@ export class Producto {
         private activo: boolean = true,
         private creadoEn: Date = new Date(),
     ) {}
+
+    public actualizar(data: UpdateProductoInput): void {
+        this.nombre = data.nombre ?? this.nombre;
+        this.precio = data.precio ? Precio.create(data.precio) : this.precio;
+        this.categoriaId = data.categoriaId ?? this.categoriaId;
+    }
 
     public activar(): void {
         this.activo = true;

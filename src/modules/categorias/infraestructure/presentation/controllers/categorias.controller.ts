@@ -4,13 +4,13 @@ import { CreateCategoriaDto, UpdateCategoriaDto } from "../../../application/dto
 import { CategoriasFacade } from "../../../application/facades/categorias.facade";
 import { CategoriaResponse } from "../../../application/responses/categoria.response";
 
-import { DeleteCategoriaUseCase } from "../../../../../processes/delete-categoria/use-cases/delete-categoria.use-case";
+import { DeleteCategoriaFacade } from "../../../../../processes/delete-categoria/facades/delete-categoria.facade";
 
 @Controller('categorias')
 export class CategoriasController {
     constructor(
         private readonly facade: CategoriasFacade,
-        private readonly deleteCategoriaUseCase: DeleteCategoriaUseCase
+        private readonly deleteFacade: DeleteCategoriaFacade
     ) {}
 
     @Get()
@@ -35,6 +35,6 @@ export class CategoriasController {
 
     @Delete(':id')
     async delete(@Param('id', ParseIntPipe) id: number): Promise<CategoriaResponse> {
-        return this.deleteCategoriaUseCase.execute(id);
+        return this.deleteFacade.delete(id);
     }
 }
