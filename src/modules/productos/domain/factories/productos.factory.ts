@@ -1,5 +1,5 @@
 import { Producto } from "../entities/producto.entity";
-import { Precio } from "../value-objects/precio.vo";
+import { Precio } from "../../../../common/domain/value-objects/precio.vo";
 import { CreateProductoInput } from "../inputs/create-producto.interface";
 import { ReconstituteProductoInput } from "../inputs/reconstitute-producto.interface";
 

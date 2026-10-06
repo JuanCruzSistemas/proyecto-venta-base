@@ -1,5 +1,5 @@
 import { UpdateProductoInput } from "../inputs/update-producto.interface";
-import { Precio } from "../value-objects/precio.vo";
+import { Precio } from "../../../../common/domain/value-objects/precio.vo";
 
 export class Producto {
     constructor(

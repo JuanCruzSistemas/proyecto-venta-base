@@ -30,7 +30,7 @@ export class ProductosController {
 
     @Patch(':id')
     async update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateProductoDto): Promise<ProductoResponse> {
-        throw new NotImplementedException();
+        return this.manageFacade.update(id, dto);
     }
 
     @Patch(':id/desactivar')
