@@ -11,7 +11,7 @@ export class AppExceptionFilter implements ExceptionFilter {
 
         response.status(status).json({
             message: exception.message,
-            status
+            statusCode: status
         });
     }
 }

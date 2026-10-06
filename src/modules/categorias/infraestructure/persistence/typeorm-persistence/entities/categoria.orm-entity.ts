@@ -1,4 +1,6 @@
-import { Column, CreateDateColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+
+import { ProductoEntity } from "../../../../../productos/infraestructure/persistence/typeorm-persistence/entities/producto.orm-entity";
 
 export class CategoriaEntity {
     @PrimaryGeneratedColumn()
@@ -9,4 +11,7 @@ export class CategoriaEntity {
 
     @CreateDateColumn()
     creadoEn!: Date;
+
+    @OneToMany(() => ProductoEntity, (producto) => producto.categoria)
+    productos!: ProductoEntity[];
 }

@@ -31,6 +31,10 @@ export class Categoria {
         }
     }
 
+    public cambiarNombre(nombre: string): void {
+        this.nombre = nombre;
+    }
+
     public getId(): number | null {
         return this.id;
     }

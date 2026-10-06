@@ -7,5 +7,6 @@ export interface ICategoriasRepository {
     findOneById(id: number): Promise<Categoria | null>;
     findAll(): Promise<Categoria[]>;
     update(data: Categoria): Promise<Categoria>;
-    remove(id: number): Promise<void>;
+    remove(categoria: Categoria): Promise<void>;
+    existsByNombre(nombre: string): Promise<boolean>;
 }

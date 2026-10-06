@@ -1,10 +1,23 @@
 import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { CategoriaEntity } from "./infraestructure/persistence/typeorm-persistence/entities/categoria.orm-entity";
+
+import { CategoriaPersistenceModule } from "./infraestructure/persistence/typeorm-persistence/categoria-persistence.module";
+import { CreateCategoriaUseCase, FindAllCategoriasUseCase, FindOneCategoriaUseCase, UpdateCategoriaUseCase } from "./application/use-cases";
+import { CategoriasFacade } from "./application/facades/categorias.facade";
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([CategoriaEntity])
+        CategoriaPersistenceModule
+    ],
+    providers: [
+        CreateCategoriaUseCase,
+        FindOneCategoriaUseCase,
+        FindAllCategoriasUseCase,
+        UpdateCategoriaUseCase,
+        CategoriasFacade
+    ],
+    exports: [
+        CategoriasFacade,
+        CategoriaPersistenceModule
     ]
 })
 export class CategoriasModule {}
