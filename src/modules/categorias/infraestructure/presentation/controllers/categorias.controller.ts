@@ -3,7 +3,8 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from 
 import { CreateCategoriaDto, UpdateCategoriaDto } from "../../../application/dtos";
 import { CategoriasFacade } from "../../../application/facades/categorias.facade";
 import { CategoriaResponse } from "../../../application/responses/categoria.response";
-import { DeleteCategoriaUseCase } from "../../../application/use-cases";
+
+import { DeleteCategoriaUseCase } from "../../../../../processes/delete-categoria/use-cases/delete-categoria.use-case";
 
 @Controller('categorias')
 export class CategoriasController {
@@ -34,6 +35,6 @@ export class CategoriasController {
 
     @Delete(':id')
     async delete(@Param('id', ParseIntPipe) id: number): Promise<CategoriaResponse> {
-        return this.facade.delete(id);
+        return this.deleteCategoriaUseCase.execute(id);
     }
 }

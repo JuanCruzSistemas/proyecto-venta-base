@@ -1,12 +1,18 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+
+import { ProductoEntity } from "../../../../productos/infraestructure/persistence/typeorm-persistence/entities/producto.orm-entity";
+
 import { CategoriaEntity } from "./entities/categoria.orm-entity";
 import { CATEGORIAS_REPOSITORY } from "../../../domain/repositories/categorias.repository.interface";
 import { CategoriasRepository } from "./repositories/categorias.repository";
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([CategoriaEntity])
+        TypeOrmModule.forFeature([
+            CategoriaEntity,
+            ProductoEntity
+        ])
     ],
     providers: [
         {
