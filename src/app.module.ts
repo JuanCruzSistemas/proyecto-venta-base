@@ -5,6 +5,9 @@ import { ProductosModule } from './modules/productos/productos.module';
 import { CategoriasModule } from './modules/categorias/categorias.module';
 import { VentasModule } from './modules/ventas/ventas.module';
 import { TypeOrmUnitOfWorkModule } from './common/infraestructure/typeorm-uow/typeorm-uow.module';
+import { ManageProductoModule } from './processes/manage-producto/manage-producto.module';
+import { CreateVentaModule } from './processes/create-venta/create-venta.module';
+import { DeleteCategoriaModule } from './processes/delete-categoria/delete-categoria.module';
 
 @Module({
   imports: [
@@ -27,7 +30,10 @@ import { TypeOrmUnitOfWorkModule } from './common/infraestructure/typeorm-uow/ty
     TypeOrmUnitOfWorkModule,
     ProductosModule,
     CategoriasModule,
-    VentasModule
+    VentasModule,
+    ManageProductoModule,
+    DeleteCategoriaModule,
+    CreateVentaModule
   ],
   controllers: [],
   providers: [],

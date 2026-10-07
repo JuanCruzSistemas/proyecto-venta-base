@@ -1,4 +1,4 @@
-import { Inject } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 
 import { type IUnitOfWork, UNIT_OF_WORK_TOKEN } from "../../../common/application/unit-of-work/unit-of-work.interface";
 
@@ -12,6 +12,7 @@ import { type ICategoriasRepository, CATEGORIAS_REPOSITORY } from "../../../modu
 import { NombreProductoDuplicadoException } from "../../../modules/productos/application/exceptions/nombre-duplicado.exception";
 import { CategoriaNoEncontradaException } from "../../../modules/categorias/application/exceptions/categoria-no-encontrada.exception";
 
+@Injectable()
 export class UpdateProductoUseCase {
     constructor(
         @Inject(UNIT_OF_WORK_TOKEN)

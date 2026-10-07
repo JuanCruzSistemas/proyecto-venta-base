@@ -11,15 +11,9 @@ export class DetalleVentaEntity {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({ name: 'venta_id' })
-    ventaId!: number;
-
     @ManyToOne(() => VentaEntity, (venta) => venta.detallesVenta)
     @JoinColumn({ name: 'venta_id' })
     venta!: VentaEntity;
-
-    @Column({ name: 'producto_id' })
-    productoId!: number;
 
     @ManyToOne(() => ProductoEntity, (producto) => producto.detallesVenta)
     @JoinColumn({ name: 'producto_id' })

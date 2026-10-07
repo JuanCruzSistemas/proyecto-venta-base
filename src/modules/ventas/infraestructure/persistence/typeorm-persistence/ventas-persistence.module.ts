@@ -3,6 +3,9 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ProductoEntity } from "../../../../productos/infraestructure/persistence/typeorm-persistence/entities/producto.orm-entity";
 import { VentaEntity } from "./entities/venta.orm-entity";
 import { DetalleVentaEntity } from "./entities/detalle-venta.orm-entity";
+import { VENTAS_REPOSITORY_TOKEN } from "../../../domain/repositories/ventas.repository.interface";
+import { VentasRepository } from "./repositories/ventas.repository";
+import { TypeOrmUnitOfWorkModule } from "../../../../../common/infraestructure/typeorm-uow/typeorm-uow.module";
 
 @Module({
     imports: [
@@ -10,10 +13,18 @@ import { DetalleVentaEntity } from "./entities/detalle-venta.orm-entity";
             ProductoEntity,
             VentaEntity,
             DetalleVentaEntity
-        ])
+        ]),
+        TypeOrmUnitOfWorkModule
+    ],
+    providers: [
+        {
+            provide: VENTAS_REPOSITORY_TOKEN,
+            useClass: VentasRepository
+        }
     ],
     exports: [
-        TypeOrmModule
+        TypeOrmModule,
+        VENTAS_REPOSITORY_TOKEN
     ]
 })
 export class VentasPersistenceModule {}

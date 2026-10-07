@@ -3,7 +3,9 @@ import { ICategoriasRepository } from "../../../../domain/repositories/categoria
 import { CategoriaEntity } from "../entities/categoria.orm-entity";
 import { CategoriaOrmMappers } from "../mappers/categoria-orm.mapper";
 import { GestorEntityManager } from "../../../../../../common/infraestructure/typeorm-uow/gestor-entity-manager";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class CategoriasRepository implements ICategoriasRepository {
     constructor(
         private readonly repo: GestorEntityManager

@@ -31,6 +31,7 @@ export class UpdateCategoriaUseCase {
         }
 
         categoria.cambiarNombre(dto.nombre ?? categoria.getNombre());
-        return CategoriaResponseMapper.toResponse(categoria);
+        const categoriaActualizada = await this.repo.update(categoria);
+        return CategoriaResponseMapper.toResponse(categoriaActualizada);
     }
 }

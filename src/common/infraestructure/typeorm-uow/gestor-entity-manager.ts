@@ -16,9 +16,7 @@ export class GestorEntityManager {
         if (this.inActualTransaction) {
             return work();
         }
-        
-        const manager = this.dataSource.manager;
-        return transactionStore.run(manager, work);
+        return this.dataSource.transaction(async (manager) => transactionStore.run(manager, work));
     }
 
     get actual() {

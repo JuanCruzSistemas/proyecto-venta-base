@@ -1,3 +1,4 @@
+import { Injectable } from "@nestjs/common";
 import { GestorEntityManager } from "../../../../../../common/infraestructure/typeorm-uow/gestor-entity-manager";
 
 import { Producto } from "../../../../domain/entities/producto.entity";
@@ -6,6 +7,7 @@ import { IProductosRepository } from "../../../../domain/repositories/productos.
 import { ProductoEntity } from "../entities/producto.orm-entity";
 import { ProductoOrmMapper } from "../mappers/producto-orm.mapper";
 
+@Injectable()
 export class ProductosRepository implements IProductosRepository {
     constructor(
         private readonly gestor: GestorEntityManager
@@ -20,7 +22,7 @@ export class ProductosRepository implements IProductosRepository {
     async findAll(activo?: boolean): Promise<Producto[]> {
         const query = this.gestor.actual.createQueryBuilder(ProductoEntity, 'productos');
         if (activo !== undefined) {
-            query.where('producto.activo = :activo', { activo });
+            query.where('productos.activo = :activo', { activo });
         }
 
         const productos = await query.getMany();
@@ -47,5 +49,9 @@ export class ProductosRepository implements IProductosRepository {
 
     async existsByNombre(nombre: string): Promise<boolean> {
         return this.gestor.actual.existsBy(ProductoEntity, { nombre });
+    }
+
+    async existsById(id: number): Promise<boolean> {
+        return this.gestor.actual.existsBy(ProductoEntity, { id });
     }
 }

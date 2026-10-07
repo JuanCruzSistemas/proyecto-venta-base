@@ -32,6 +32,7 @@ export class Categoria {
     }
 
     public cambiarNombre(nombre: string): void {
+        Categoria.validate(nombre);
         this.nombre = nombre;
     }
 

@@ -3,7 +3,6 @@ import { VentasPersistenceModule } from "./infraestructure/persistence/typeorm-p
 import { FindAllVentasUseCase } from "./application/use-cases/find-all-ventas.use-case";
 import { FindOneVentaUseCase } from "./application/use-cases/find-one.use-case";
 import { VentasFacade } from "./application/facades/ventas.facade";
-import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
     imports: [
@@ -15,7 +14,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
         VentasFacade
     ],
     exports: [
-        TypeOrmModule,
+        VentasPersistenceModule,
         VentasFacade
     ]
 })

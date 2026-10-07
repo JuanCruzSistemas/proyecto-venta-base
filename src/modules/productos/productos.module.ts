@@ -14,6 +14,10 @@ import { ProductosFacade } from "./application/facade/productos.facade";
         ActivateProductoUseCase,
         DeactivateProductoUseCase,
         ProductosFacade
+    ],
+    exports: [
+        ProductosPersistenceModule,
+        ProductosFacade
     ]
 })
 export class ProductosModule {}

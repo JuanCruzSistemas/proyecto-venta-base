@@ -9,4 +9,5 @@ export interface IProductosRepository {
     update(data: Producto): Promise<Producto>;
     countByCategoria(categoriaId: number): Promise<number>;
     existsByNombre(nombre: string): Promise<boolean>;
+    existsById(id: number): Promise<boolean>;
 }
