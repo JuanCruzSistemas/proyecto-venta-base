@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../../../../../../generated/prisma";
 
 import { Categoria as CategoriaPrisma } from "../../../../../../generated/prisma";
 import { Categoria } from "../../../../domain/entities/categoria.entity";

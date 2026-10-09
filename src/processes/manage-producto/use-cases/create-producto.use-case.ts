@@ -9,7 +9,7 @@ import { ProductoResponse } from "../../../modules/productos/application/respons
 import { ProductoResponseMapper } from "../../../modules/productos/application/mappers/producto-response.mapper";
 import { NombreProductoDuplicadoException } from "../../../modules/productos/application/exceptions/nombre-duplicado.exception";
 
-import { type ICategoriasRepository, CATEGORIAS_REPOSITORY } from "../../../modules/categorias/domain/repositories/categorias.repository.interface";
+import { type ICategoriasRepository, CATEGORIAS_REPOSITORY_TOKEN } from "../../../modules/categorias/domain/repositories/categorias.repository.interface";
 import { CategoriaNoEncontradaException } from "../../../modules/categorias/application/exceptions/categoria-no-encontrada.exception";
 
 @Injectable()
@@ -19,7 +19,7 @@ export class CreateProductoUseCase {
         private readonly uow: IUnitOfWork,
         @Inject(PRODUCTOS_REPOSITORY_TOKEN)
         private readonly productosRepo: IProductosRepository,
-        @Inject(CATEGORIAS_REPOSITORY)
+        @Inject(CATEGORIAS_REPOSITORY_TOKEN)
         private readonly categoriasRepo: ICategoriasRepository
     ) {}
 

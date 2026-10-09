@@ -9,7 +9,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     constructor(configService: ConfigService) {
         const connectionString = `postgresql://${configService.get<string>("POSTGRES_USER")}:` +
                                  `${configService.get<string>("POSTGRES_PASSWORD")}@` +
-                                 `${configService.get<string>("POSTGRES_HOST")}:` +
+                                 `${configService.get<string>("HOST")}:` +
                                  `${configService.get<string>("POSTGRES_PORT")}/` +
                                  `${configService.get<string>("POSTGRES_DB")}`;
 

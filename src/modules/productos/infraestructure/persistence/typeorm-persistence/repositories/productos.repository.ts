@@ -8,7 +8,7 @@ import { ProductoEntity } from "../entities/producto.orm-entity";
 import { ProductoOrmMapper } from "../mappers/producto-orm.mapper";
 
 @Injectable()
-export class ProductosRepository implements IProductosRepository {
+export class TypeOrmProductosRepository implements IProductosRepository {
     constructor(
         private readonly gestor: GestorEntityManager
     ) {}

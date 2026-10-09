@@ -9,7 +9,7 @@ export class VentaResponseMapper {
             id: venta.getId()!,
             fecha: venta.getFecha(),
             total: venta.getTotal(),
-            detalles: venta.getDetalles().map(this.detalleToResponse)
+            detalles: venta.getDetalles().map(VentaResponseMapper.detalleToResponse)
         };
     }
 

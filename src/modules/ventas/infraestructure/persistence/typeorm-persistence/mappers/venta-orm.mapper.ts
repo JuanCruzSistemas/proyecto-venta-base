@@ -1,5 +1,4 @@
 import { ProductoEntity } from "../../../../../productos/infraestructure/persistence/typeorm-persistence/entities/producto.orm-entity";
-import { ProductoOrmMapper } from "../../../../../productos/infraestructure/persistence/typeorm-persistence/mappers/producto-orm.mapper";
 import { DetalleVenta } from "../../../../domain/entities/detalle-venta.entity";
 import { Venta } from "../../../../domain/entities/venta.entity";
 import { DetallesFactory } from "../../../../domain/factories/detalles.factory";
@@ -35,7 +34,6 @@ export class VentaOrmMapper {
         return DetallesFactory.reconstitute({
             id: ormDetalle.id,
             productoId: ormDetalle.producto.id,
-            producto: ProductoOrmMapper.toDomain(ormDetalle.producto),
             cantidad: ormDetalle.cantidad,
             precioUnitario: ormDetalle.precioUnitario,
             subtotal: ormDetalle.subtotal

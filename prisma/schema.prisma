@@ -1,6 +1,6 @@
 generator client {
     provider = "prisma-client-js"
-    output = "../src/generated/prisma"
+    output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -10,7 +10,7 @@ datasource db {
 model Categoria {
     id        Int        @id @default(autoincrement())
     nombre    String     @unique
-    creadoEn  DateTime   @default(now())
+    creadoEn  DateTime   @default(now()) @map("creado_en")
     productos Producto[]
 
     @@map("categorias")
@@ -21,8 +21,8 @@ model Producto {
     nombre        String         @unique
     precio        Decimal        @db.Decimal(10, 2)
     activo        Boolean        @default(true)
-    creadoEn      DateTime       @default(now())
-    categoriaId   Int
+    creadoEn      DateTime       @default(now()) @map("creado_en")
+    categoriaId   Int            @map("categoria_id")
     categoria     Categoria      @relation(fields: [categoriaId], references: [id])
     detallesVenta DetalleVenta[]
 
@@ -40,13 +40,13 @@ model Venta {
 
 model DetalleVenta {
     id             Int      @id @default(autoincrement())
-    ventaId        Int
+    ventaId        Int      @map("venta_id")
     venta          Venta    @relation(fields: [ventaId], references: [id])
-    productoId     Int
+    productoId     Int      @map("producto_id")
     producto       Producto @relation(fields: [productoId], references: [id])
     cantidad       Int
     precioUnitario Decimal  @db.Decimal(10, 2)
     subtotal       Decimal  @db.Decimal(10, 2)
 
-    @@map("detalles_venta")
+    @@map("detalles")
 }

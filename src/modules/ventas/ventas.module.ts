@@ -1,12 +1,15 @@
 import { Module } from "@nestjs/common";
-import { VentasPersistenceModule } from "./infraestructure/persistence/typeorm-persistence/ventas-persistence.module";
+
+// import { TypeOrmVentasPersistenceModule } from "./infraestructure/persistence/typeorm-persistence/typeorm-ventas-persistence.module";
 import { FindAllVentasUseCase } from "./application/use-cases/find-all-ventas.use-case";
 import { FindOneVentaUseCase } from "./application/use-cases/find-one.use-case";
 import { VentasFacade } from "./application/facades/ventas.facade";
+import { PrismaVentasPersistenceModule } from "./infraestructure/persistence/prisma-persistence/prisma-ventas-persistence.module";
 
 @Module({
     imports: [
-        VentasPersistenceModule
+        // TypeOrmVentasPersistenceModule,
+        PrismaVentasPersistenceModule
     ],
     providers: [
         FindAllVentasUseCase,
@@ -14,7 +17,8 @@ import { VentasFacade } from "./application/facades/ventas.facade";
         VentasFacade
     ],
     exports: [
-        VentasPersistenceModule,
+        // TypeOrmVentasPersistenceModule,
+        PrismaVentasPersistenceModule,
         VentasFacade
     ]
 })

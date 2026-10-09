@@ -7,7 +7,7 @@ import { VentaEntity } from "../entities/venta.orm-entity";
 import { VentaOrmMapper } from "../mappers/venta-orm.mapper";
 
 @Injectable()
-export class VentasRepository implements IVentasRepository {
+export class TypeOrmVentasRepository implements IVentasRepository {
     constructor(
         private readonly gestor: GestorEntityManager
     ) {}

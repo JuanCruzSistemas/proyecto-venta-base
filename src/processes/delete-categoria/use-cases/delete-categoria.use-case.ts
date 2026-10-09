@@ -4,7 +4,7 @@ import { type IUnitOfWork, UNIT_OF_WORK_TOKEN } from "../../../common/applicatio
 
 import { type IProductosRepository, PRODUCTOS_REPOSITORY_TOKEN } from "../../../modules/productos/domain/repositories/productos.repository.interface";
 
-import { type ICategoriasRepository, CATEGORIAS_REPOSITORY } from "../../../modules/categorias/domain/repositories/categorias.repository.interface";
+import { type ICategoriasRepository, CATEGORIAS_REPOSITORY_TOKEN } from "../../../modules/categorias/domain/repositories/categorias.repository.interface";
 import { CategoriaResponse } from "../../../modules/categorias/application/responses/categoria.response";
 import { CategoriaNoEncontradaException } from "../../../modules/categorias/application/exceptions/categoria-no-encontrada.exception";
 import { CategoriaResponseMapper } from "../../../modules/categorias/application/mappers/categoria-response.mapper";
@@ -15,7 +15,7 @@ export class DeleteCategoriaUseCase {
     constructor(
         @Inject(UNIT_OF_WORK_TOKEN)
         private readonly uow: IUnitOfWork,
-        @Inject(CATEGORIAS_REPOSITORY)
+        @Inject(CATEGORIAS_REPOSITORY_TOKEN)
         private readonly categoriasRepo: ICategoriasRepository,
         @Inject(PRODUCTOS_REPOSITORY_TOKEN)
         private readonly productosRepo: IProductosRepository

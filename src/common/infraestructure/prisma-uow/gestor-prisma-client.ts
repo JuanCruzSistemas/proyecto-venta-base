@@ -1,9 +1,11 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import { PrismaService } from "./prisma.service";
 import { Prisma } from "../../../generated/prisma";
+import { Injectable } from "@nestjs/common";
 
 const transactionStore = new AsyncLocalStorage<Prisma.TransactionClient>();
 
+@Injectable()
 export class GestorPrismaClient {
     constructor(
         private readonly prisma: PrismaService

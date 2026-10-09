@@ -8,7 +8,7 @@ import { Categoria } from "../../../../domain/entities/categoria.entity";
 import { CategoriaPrismaMapper } from "../mappers/categorias-prisma.mapper";
 
 @Injectable()
-export class CategoriasRepository implements ICategoriasRepository {
+export class PrismaCategoriasRepository implements ICategoriasRepository {
     constructor(
         private readonly gestor: GestorPrismaClient
     ) {}

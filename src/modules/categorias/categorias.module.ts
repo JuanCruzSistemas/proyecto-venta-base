@@ -1,12 +1,14 @@
 import { Module } from "@nestjs/common";
 
-import { CategoriaPersistenceModule } from "./infraestructure/persistence/typeorm-persistence/categoria-persistence.module";
 import { CreateCategoriaUseCase, FindAllCategoriasUseCase, FindOneCategoriaUseCase, UpdateCategoriaUseCase } from "./application/use-cases";
 import { CategoriasFacade } from "./application/facades/categorias.facade";
+import { PrismaCategoriasPersistenceModule } from "./infraestructure/persistence/prisma-persistence/prisma-categorias-persistence.module";
+// import { TypeOrmCategoriasPersistenceModule } from "./infraestructure/persistence/typeorm-persistence/categoria-persistence.module";
 
 @Module({
     imports: [
-        CategoriaPersistenceModule
+        // TypeOrmCategoriasPersistenceModule,
+        PrismaCategoriasPersistenceModule
     ],
     providers: [
         CreateCategoriaUseCase,
@@ -17,7 +19,7 @@ import { CategoriasFacade } from "./application/facades/categorias.facade";
     ],
     exports: [
         CategoriasFacade,
-        CategoriaPersistenceModule
+        PrismaCategoriasPersistenceModule
     ]
 })
 export class CategoriasModule {}

@@ -1,6 +1,6 @@
 import { Categoria } from "../entities/categoria.entity";
 
-export const CATEGORIAS_REPOSITORY = Symbol('ICategoriasRepository');
+export const CATEGORIAS_REPOSITORY_TOKEN = Symbol('ICategoriasRepository');
 
 export interface ICategoriasRepository {
     create(data: Categoria): Promise<Categoria>;

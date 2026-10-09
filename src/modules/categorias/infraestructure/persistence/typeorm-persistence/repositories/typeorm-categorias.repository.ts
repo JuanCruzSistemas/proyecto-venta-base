@@ -6,7 +6,7 @@ import { GestorEntityManager } from "../../../../../../common/infraestructure/ty
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class CategoriasRepository implements ICategoriasRepository {
+export class TypeOrmCategoriasRepository implements ICategoriasRepository {
     constructor(
         private readonly repo: GestorEntityManager
     ) {}

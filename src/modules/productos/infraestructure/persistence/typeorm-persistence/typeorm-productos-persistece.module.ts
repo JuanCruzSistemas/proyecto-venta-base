@@ -7,7 +7,7 @@ import { DetalleVentaEntity } from "../../../../ventas/infraestructure/persisten
 
 import { PRODUCTOS_REPOSITORY_TOKEN } from "../../../domain/repositories/productos.repository.interface";
 import { ProductoEntity } from "./entities/producto.orm-entity";
-import { ProductosRepository } from "./repositories/productos.repository";
+import { TypeOrmProductosRepository } from "./repositories/productos.repository";
 
 @Module({
     imports: [
@@ -20,7 +20,7 @@ import { ProductosRepository } from "./repositories/productos.repository";
     providers: [
         {
             provide: PRODUCTOS_REPOSITORY_TOKEN,
-            useClass: ProductosRepository
+            useClass: TypeOrmProductosRepository
         }
     ],
     exports: [
@@ -28,4 +28,4 @@ import { ProductosRepository } from "./repositories/productos.repository";
         PRODUCTOS_REPOSITORY_TOKEN
     ]
 })
-export class ProductosPersistenceModule {}
+export class TypeOrmProductosPersistenceModule {}
