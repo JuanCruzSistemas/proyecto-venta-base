@@ -13,7 +13,6 @@ export class DetallesFactory {
         return new DetalleVenta(
             null,
             data.producto.getId()!,
-            data.producto,
             cantidad,
             precioVO,
             subtotal
@@ -26,7 +25,6 @@ export class DetallesFactory {
         return new DetalleVenta(
             data.id,
             data.productoId,
-            data.producto,
             cantidad,
             precioUnitario,
             data.subtotal

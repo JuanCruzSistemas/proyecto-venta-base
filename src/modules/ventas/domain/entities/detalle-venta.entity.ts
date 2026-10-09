@@ -7,7 +7,6 @@ export class DetalleVenta {
     constructor(
         private id: number | null,
         private productoId: number,
-        private producto: Producto,
         private cantidad: Cantidad,
         private precioUnitario: Precio,
         private subtotal: number
@@ -19,10 +18,6 @@ export class DetalleVenta {
 
     public getId(): number | null {
         return this.id;
-    }
-
-    public getProducto(): Producto {
-        return this.producto;
     }
 
     public getProductoId(): number {

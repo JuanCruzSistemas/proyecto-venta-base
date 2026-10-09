@@ -1,3 +1,4 @@
+import { ProductoEntity } from "../../../../../productos/infraestructure/persistence/typeorm-persistence/entities/producto.orm-entity";
 import { ProductoOrmMapper } from "../../../../../productos/infraestructure/persistence/typeorm-persistence/mappers/producto-orm.mapper";
 import { DetalleVenta } from "../../../../domain/entities/detalle-venta.entity";
 import { Venta } from "../../../../domain/entities/venta.entity";
@@ -48,7 +49,7 @@ export class VentaOrmMapper {
         if (id) {
             orm.id = id;
         }
-        orm.producto = ProductoOrmMapper.toOrm(domainDetalle.getProducto());
+        orm.producto = { id: domainDetalle.getProductoId() } as ProductoEntity;
         orm.cantidad = domainDetalle.getCantidad();
         orm.precioUnitario = domainDetalle.getPrecioUnitario();
         orm.subtotal = domainDetalle.getSubtotal();

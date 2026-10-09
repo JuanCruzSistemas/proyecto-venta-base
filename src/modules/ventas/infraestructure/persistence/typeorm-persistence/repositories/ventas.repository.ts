@@ -15,9 +15,7 @@ export class VentasRepository implements IVentasRepository {
     async findAll(): Promise<Venta[]> {
         const ventas = await this.gestor.actual.find(VentaEntity, {
             relations: {
-                detallesVenta: {
-                    producto: true
-                }
+                detallesVenta: true
             }
         });
         return ventas.map(VentaOrmMapper.toDomain);
@@ -27,9 +25,7 @@ export class VentasRepository implements IVentasRepository {
         const venta = await this.gestor.actual.findOne(VentaEntity, {
             where: { id },
             relations: {
-                detallesVenta: {
-                    producto: true
-                }
+                detallesVenta: true
             }
         });
         return venta ? VentaOrmMapper.toDomain(venta) : null;
