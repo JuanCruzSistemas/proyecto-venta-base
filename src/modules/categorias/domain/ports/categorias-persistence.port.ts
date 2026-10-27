@@ -1,8 +1,8 @@
 import { Categoria } from "../entities/categoria.entity";
 
-export const CATEGORIAS_REPOSITORY_TOKEN = Symbol('ICategoriasRepository');
+export const CATEGORIAS_PERSISTENCE_PORT = Symbol('CategoriasPersistencePort');
 
-export interface ICategoriasRepository {
+export interface CategoriasPersistencePort {
     create(data: Categoria): Promise<Categoria>;
     findOneById(id: number): Promise<Categoria | null>;
     findAll(): Promise<Categoria[]>;

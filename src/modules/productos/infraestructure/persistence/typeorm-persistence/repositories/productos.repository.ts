@@ -2,13 +2,13 @@ import { Injectable } from "@nestjs/common";
 import { GestorEntityManager } from "../../../../../../common/infraestructure/typeorm-uow/gestor-entity-manager";
 
 import { Producto } from "../../../../domain/entities/producto.entity";
-import { IProductosRepository } from "../../../../domain/repositories/productos.repository.interface";
+import { ProductosPersistencePort } from "../../../../domain/ports/productos-persistence.port";
 
 import { ProductoEntity } from "../entities/producto.orm-entity";
 import { ProductoOrmMapper } from "../mappers/producto-orm.mapper";
 
 @Injectable()
-export class TypeOrmProductosRepository implements IProductosRepository {
+export class TypeOrmProductosRepository implements ProductosPersistencePort {
     constructor(
         private readonly gestor: GestorEntityManager
     ) {}

@@ -3,9 +3,10 @@ import { Injectable } from "@nestjs/common";
 import { FiltroActivoDto } from "../dtos";
 import { ProductoResponse } from "../responses/producto.response";
 import { ActivateProductoUseCase, DeactivateProductoUseCase, FindAllProductosUseCase, FindOneProductoUseCase } from "../use-cases";
+import { ProductosApplicationPort } from "../ports/productos-application.port";
 
 @Injectable()
-export class ProductosFacade {
+export class ProductosFacade implements ProductosApplicationPort {
     constructor(
         private readonly findOneProductoUseCase: FindOneProductoUseCase,
         private readonly findAllProductosUseCase: FindAllProductosUseCase,

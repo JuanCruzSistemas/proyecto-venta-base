@@ -1,16 +1,18 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Inject, Param, ParseIntPipe, Patch, Post } from "@nestjs/common";
 
 import { CreateCategoriaDto, UpdateCategoriaDto } from "../../../application/dtos";
-import { CategoriasFacade } from "../../../application/facades/categorias.facade";
 import { CategoriaResponse } from "../../../application/responses/categoria.response";
 
-import { DeleteCategoriaFacade } from "../../../../../processes/delete-categoria/facades/delete-categoria.facade";
+import { type CategoriasApplicationPort, CATEGORIAS_APPLICATION_PORT } from "../../../application/ports/categorias-application.port";
+import { type DeleteCategoriaPort, DELETE_CATEGORIA_PORT } from "../../../../../processes/delete-categoria/ports/delete-categoria.port";
 
 @Controller('categorias')
 export class CategoriasController {
     constructor(
-        private readonly facade: CategoriasFacade,
-        private readonly deleteFacade: DeleteCategoriaFacade
+        @Inject(CATEGORIAS_APPLICATION_PORT)
+        private readonly facade: CategoriasApplicationPort,
+        @Inject(DELETE_CATEGORIA_PORT)
+        private readonly deleteFacade: DeleteCategoriaPort
     ) {}
 
     @Get()

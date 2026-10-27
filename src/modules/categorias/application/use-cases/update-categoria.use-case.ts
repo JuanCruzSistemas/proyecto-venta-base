@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 
-import { type ICategoriasRepository, CATEGORIAS_REPOSITORY_TOKEN } from "../../domain/repositories/categorias.repository.interface";
+import { type CategoriasPersistencePort, CATEGORIAS_PERSISTENCE_PORT } from "../../domain/ports/categorias-persistence.port";
 
 import { UpdateCategoriaDto } from "../dtos/update-categoria.dto";
 import { CategoriaResponse } from "../responses/categoria.response";
@@ -11,8 +11,8 @@ import { NombreCategoriaDuplicadoException } from "../exceptions/nombre-duplicad
 @Injectable()
 export class UpdateCategoriaUseCase {
     constructor(
-        @Inject(CATEGORIAS_REPOSITORY_TOKEN)
-        private readonly repo: ICategoriasRepository,
+        @Inject(CATEGORIAS_PERSISTENCE_PORT)
+        private readonly repo: CategoriasPersistencePort,
     ) {}
 
     async execute(id: number, dto: UpdateCategoriaDto): Promise<CategoriaResponse> {

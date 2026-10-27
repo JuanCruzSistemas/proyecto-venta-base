@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { GestorPrismaClient } from "../../../../../../common/infraestructure/prisma-uow/gestor-prisma-client";
 import { Venta } from "../../../../domain/entities/venta.entity";
-import { IVentasRepository } from "../../../../domain/repositories/ventas.repository.interface";
+import { VentasPersistencePort } from "../../../../domain/ports/ventas-persistence.port";
 import { VentaPrismaMapper } from "../mappers/venta-prisma.mapper";
 
 @Injectable()
-export class PrismaVentasRepository implements IVentasRepository {
+export class VentasRepository implements VentasPersistencePort {
     constructor(
         private readonly gestor: GestorPrismaClient
     ) {}

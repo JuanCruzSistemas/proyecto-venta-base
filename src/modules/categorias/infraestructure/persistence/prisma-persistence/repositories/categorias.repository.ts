@@ -2,13 +2,13 @@ import { Injectable } from "@nestjs/common";
 
 import { GestorPrismaClient } from "../../../../../../common/infraestructure/prisma-uow/gestor-prisma-client";
 
-import { ICategoriasRepository } from "../../../../domain/repositories/categorias.repository.interface";
+import { CategoriasPersistencePort } from "../../../../domain/ports/categorias-persistence.port";
 import { Categoria } from "../../../../domain/entities/categoria.entity";
 
 import { CategoriaPrismaMapper } from "../mappers/categorias-prisma.mapper";
 
 @Injectable()
-export class PrismaCategoriasRepository implements ICategoriasRepository {
+export class CategoriasRepository implements CategoriasPersistencePort {
     constructor(
         private readonly gestor: GestorPrismaClient
     ) {}

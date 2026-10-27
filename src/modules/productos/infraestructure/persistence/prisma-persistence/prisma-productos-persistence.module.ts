@@ -1,16 +1,16 @@
 import { Module } from "@nestjs/common";
-import { PRODUCTOS_REPOSITORY_TOKEN } from "../../../domain/repositories/productos.repository.interface";
-import { PrismaProductosRepository } from "./repositories/prisma-productos.repository";
+import { PRODUCTOS_PERSISTENCE_PORT } from "../../../domain/ports/productos-persistence.port";
+import { ProductosRepository } from "./repositories/prisma-productos.repository";
 
 @Module({
     providers: [
         {
-            provide: PRODUCTOS_REPOSITORY_TOKEN,
-            useClass: PrismaProductosRepository
+            provide: PRODUCTOS_PERSISTENCE_PORT,
+            useClass: ProductosRepository
         }
     ],
     exports: [
-        PRODUCTOS_REPOSITORY_TOKEN
+        PRODUCTOS_PERSISTENCE_PORT
     ]
 })
-export class PrismaProductosPersistenceModule {}
+export class ProductosPersistenceModule {}

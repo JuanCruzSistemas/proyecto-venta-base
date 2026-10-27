@@ -5,9 +5,10 @@ import { ProductoResponse } from "../../../modules/productos/application/respons
 
 import { CreateProductoUseCase } from "../use-cases/create-producto.use-case";
 import { UpdateProductoUseCase } from "../use-cases/update-producto.use-case";
+import { ManageProductoPort } from "../ports/manage-producto.port";
 
 @Injectable()
-export class ManageProductoFacade {
+export class ManageProductoFacade implements ManageProductoPort {
     constructor(
         private readonly createProductoUseCase: CreateProductoUseCase,
         private readonly updateProductoUseCase: UpdateProductoUseCase,

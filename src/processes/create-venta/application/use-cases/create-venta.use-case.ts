@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { type IVentasRepository, VENTAS_REPOSITORY_TOKEN } from "../../../../modules/ventas/domain/repositories/ventas.repository.interface";
-import { type IProductosRepository, PRODUCTOS_REPOSITORY_TOKEN } from "../../../../modules/productos/domain/repositories/productos.repository.interface";
+import { type VentasPersistencePort, VENTAS_PERSISTENCE_PORT } from "../../../../modules/ventas/domain/ports/ventas-persistence.port";
+import { type ProductosPersistencePort, PRODUCTOS_PERSISTENCE_PORT } from "../../../../modules/productos/domain/ports/productos-persistence.port";
 import { CreateVentaDto } from "../dtos/create-venta.dto";
 import { VentaResponse } from "../../../../modules/ventas/application/responses/venta.response";
 import { type IUnitOfWork, UNIT_OF_WORK_TOKEN } from "../../../../common/application/unit-of-work/unit-of-work.interface";
@@ -16,10 +16,10 @@ export class CreateVentaUseCase {
     constructor(
         @Inject(UNIT_OF_WORK_TOKEN)
         private readonly uow: IUnitOfWork,
-        @Inject(VENTAS_REPOSITORY_TOKEN)
-        private readonly ventasRepo: IVentasRepository,
-        @Inject(PRODUCTOS_REPOSITORY_TOKEN)
-        private readonly productosRepo: IProductosRepository
+        @Inject(VENTAS_PERSISTENCE_PORT)
+        private readonly ventasRepo: VentasPersistencePort,
+        @Inject(PRODUCTOS_PERSISTENCE_PORT)
+        private readonly productosRepo: ProductosPersistencePort
     ) {}
 
     async execute(dto: CreateVentaDto): Promise<VentaResponse> {

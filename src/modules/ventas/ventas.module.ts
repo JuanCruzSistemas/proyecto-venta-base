@@ -4,22 +4,33 @@ import { Module } from "@nestjs/common";
 import { FindAllVentasUseCase } from "./application/use-cases/find-all-ventas.use-case";
 import { FindOneVentaUseCase } from "./application/use-cases/find-one.use-case";
 import { VentasFacade } from "./application/facades/ventas.facade";
-import { PrismaVentasPersistenceModule } from "./infraestructure/persistence/prisma-persistence/prisma-ventas-persistence.module";
+import { VentasPersistenceModule } from "./infraestructure/persistence/prisma-persistence/ventas-persistence.module";
+import { CreateVentaModule } from "../../processes/create-venta/create-venta.module";
+import { VentasController } from "./infraestructure/presentation/controllers/ventas.controller";
+import { VENTAS_APPLICATION_PORT } from "./application/ports/ventas-application.port";
 
 @Module({
     imports: [
         // TypeOrmVentasPersistenceModule,
-        PrismaVentasPersistenceModule
+        VentasPersistenceModule,
+        CreateVentaModule
     ],
     providers: [
         FindAllVentasUseCase,
         FindOneVentaUseCase,
-        VentasFacade
+        VentasFacade,
+        {
+            provide: VENTAS_APPLICATION_PORT,
+            useClass: VentasFacade
+        }
+    ],
+    controllers: [
+        VentasController
     ],
     exports: [
         // TypeOrmVentasPersistenceModule,
-        PrismaVentasPersistenceModule,
-        VentasFacade
+        VentasPersistenceModule,
+        VENTAS_APPLICATION_PORT
     ]
 })
 export class VentasModule {}

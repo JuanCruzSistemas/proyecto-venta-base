@@ -1,22 +1,27 @@
 import { Module } from "@nestjs/common";
 
-import { CategoriasModule } from "../../modules/categorias/categorias.module";
-import { CategoriasController } from "../../modules/categorias/infraestructure/presentation/controllers/categorias.controller";
+import { CategoriasPersistenceModule } from "../../modules/categorias/infraestructure/persistence/prisma-persistence/categorias-persistence.module";
+import { ProductosPersistenceModule } from "../../modules/productos/infraestructure/persistence/prisma-persistence/prisma-productos-persistence.module";
+
 import { DeleteCategoriaUseCase } from "./use-cases/delete-categoria.use-case";
 import { DeleteCategoriaFacade } from "./facades/delete-categoria.facade";
-import { ProductosModule } from "../../modules/productos/productos.module";
+import { DELETE_CATEGORIA_PORT } from "./ports/delete-categoria.port";
 
 @Module({
     imports: [
-        CategoriasModule,
-        ProductosModule
+        CategoriasPersistenceModule,
+        ProductosPersistenceModule
     ],
     providers: [
         DeleteCategoriaUseCase,
-        DeleteCategoriaFacade
+        DeleteCategoriaFacade,
+        {
+            provide: DELETE_CATEGORIA_PORT,
+            useClass: DeleteCategoriaFacade
+        }
     ],
-    controllers: [
-        CategoriasController
+    exports: [
+        DELETE_CATEGORIA_PORT
     ]
 })
 export class DeleteCategoriaModule {}

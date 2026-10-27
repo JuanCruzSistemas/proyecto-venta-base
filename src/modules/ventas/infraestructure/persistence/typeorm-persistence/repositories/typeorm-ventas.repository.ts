@@ -2,12 +2,12 @@ import { Injectable } from "@nestjs/common";
 import { GestorEntityManager } from "../../../../../../common/infraestructure/typeorm-uow/gestor-entity-manager";
 
 import { Venta } from "../../../../domain/entities/venta.entity";
-import { IVentasRepository } from "../../../../domain/repositories/ventas.repository.interface";
+import { VentasPersistencePort } from "../../../../domain/ports/ventas-persistence.port";
 import { VentaEntity } from "../entities/venta.orm-entity";
 import { VentaOrmMapper } from "../mappers/venta-orm.mapper";
 
 @Injectable()
-export class TypeOrmVentasRepository implements IVentasRepository {
+export class TypeOrmVentasRepository implements VentasPersistencePort {
     constructor(
         private readonly gestor: GestorEntityManager
     ) {}

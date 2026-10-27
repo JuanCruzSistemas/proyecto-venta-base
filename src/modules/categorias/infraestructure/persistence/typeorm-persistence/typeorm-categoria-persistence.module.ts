@@ -4,7 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ProductoEntity } from "../../../../productos/infraestructure/persistence/typeorm-persistence/entities/producto.orm-entity";
 
 import { CategoriaEntity } from "./entities/categoria.orm-entity";
-import { CATEGORIAS_REPOSITORY_TOKEN } from "../../../domain/repositories/categorias.repository.interface";
+import { CATEGORIAS_PERSISTENCE_PORT } from "../../../domain/ports/categorias-persistence.port";
 import { TypeOrmCategoriasRepository } from "./repositories/typeorm-categorias.repository";
 
 @Module({
@@ -16,12 +16,12 @@ import { TypeOrmCategoriasRepository } from "./repositories/typeorm-categorias.r
     ],
     providers: [
         {
-            provide: CATEGORIAS_REPOSITORY_TOKEN,
+            provide: CATEGORIAS_PERSISTENCE_PORT,
             useClass: TypeOrmCategoriasRepository
         }
     ],
     exports: [
-        CATEGORIAS_REPOSITORY_TOKEN,
+        CATEGORIAS_PERSISTENCE_PORT,
         TypeOrmModule
     ]
 })

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 
-import { type ICategoriasRepository, CATEGORIAS_REPOSITORY_TOKEN } from "../../domain/repositories/categorias.repository.interface";
+import { type CategoriasPersistencePort, CATEGORIAS_PERSISTENCE_PORT } from "../../domain/ports/categorias-persistence.port";
 import { Categoria } from "../../domain/entities/categoria.entity";
 
 import { CreateCategoriaDto } from "../dtos/create-categoria.dto";
@@ -11,8 +11,8 @@ import { NombreCategoriaDuplicadoException } from "../exceptions/nombre-duplicad
 @Injectable()
 export class CreateCategoriaUseCase {
     constructor(
-        @Inject(CATEGORIAS_REPOSITORY_TOKEN)
-        private readonly repo: ICategoriasRepository
+        @Inject(CATEGORIAS_PERSISTENCE_PORT)
+        private readonly repo: CategoriasPersistencePort
     ) {}
 
     async execute(dto: CreateCategoriaDto): Promise<CategoriaResponse> {

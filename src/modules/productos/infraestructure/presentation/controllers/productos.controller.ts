@@ -1,16 +1,18 @@
-import { Body, Controller, Get, NotImplementedException, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Inject, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
 
-import { ManageProductoFacade } from "../../../../../processes/manage-producto/facades/manage-producto.facade";
-
-import { ProductosFacade } from "../../../application/facade/productos.facade";
 import { CreateProductoDto, FiltroActivoDto, UpdateProductoDto } from "../../../application/dtos";
 import { ProductoResponse } from "../../../application/responses/producto.response";
+
+import { type ProductosApplicationPort, PRODUCTOS_APPLICATION_PORT } from "../../../application/ports/productos-application.port";
+import { type ManageProductoPort,MANAGE_PRODUCTO_PORT } from "../../../../../processes/manage-producto/ports/manage-producto.port";
 
 @Controller('productos')
 export class ProductosController {
     constructor(
-        private readonly facade: ProductosFacade,
-        private readonly manageFacade: ManageProductoFacade
+        @Inject(PRODUCTOS_APPLICATION_PORT)
+        private readonly facade: ProductosApplicationPort,
+        @Inject(MANAGE_PRODUCTO_PORT)
+        private readonly manageFacade: ManageProductoPort
     ) {}
 
     @Post()

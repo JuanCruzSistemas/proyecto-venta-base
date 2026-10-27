@@ -1,14 +1,18 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from "@nestjs/common";
-import { VentasFacade } from "../../../application/facades/ventas.facade";
+import { Body, Controller, Get, Inject, Param, ParseIntPipe, Post } from "@nestjs/common";
+
 import { VentaResponse } from "../../../application/responses/venta.response";
 import { CreateVentaDto } from "../../../../../processes/create-venta/application/dtos/create-venta.dto";
-import { CreateVentaFacade } from "../../../../../processes/create-venta/application/facades/create-venta.facade";
+
+import { type VentasApplicationPort, VENTAS_APPLICATION_PORT } from "../../../application/ports/ventas-application.port";
+import { type CreateVentaPort, CREATE_VENTA_PORT } from "../../../../../processes/create-venta/application/ports/create-venta.port";
 
 @Controller('ventas')
 export class VentasController {
     constructor(
-        private readonly facade: VentasFacade,
-        private readonly createFacade: CreateVentaFacade
+        @Inject(VENTAS_APPLICATION_PORT)
+        private readonly facade: VentasApplicationPort,
+        @Inject(CREATE_VENTA_PORT)
+        private readonly createFacade: CreateVentaPort
     ) {}
 
     @Get()

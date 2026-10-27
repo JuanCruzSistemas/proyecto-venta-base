@@ -2,14 +2,14 @@ import { Inject, Injectable } from "@nestjs/common";
 
 import { type IUnitOfWork, UNIT_OF_WORK_TOKEN } from "../../../common/application/unit-of-work/unit-of-work.interface";
 
-import { type IProductosRepository, PRODUCTOS_REPOSITORY_TOKEN } from "../../../modules/productos/domain/repositories/productos.repository.interface";
+import { type ProductosPersistencePort, PRODUCTOS_PERSISTENCE_PORT } from "../../../modules/productos/domain/ports/productos-persistence.port";
 import { ProductosFactory } from "../../../modules/productos/domain/factories/productos.factory";
 import { CreateProductoDto } from "../../../modules/productos/application/dtos";
 import { ProductoResponse } from "../../../modules/productos/application/responses/producto.response";
 import { ProductoResponseMapper } from "../../../modules/productos/application/mappers/producto-response.mapper";
 import { NombreProductoDuplicadoException } from "../../../modules/productos/application/exceptions/nombre-duplicado.exception";
 
-import { type ICategoriasRepository, CATEGORIAS_REPOSITORY_TOKEN } from "../../../modules/categorias/domain/repositories/categorias.repository.interface";
+import { type CategoriasPersistencePort, CATEGORIAS_PERSISTENCE_PORT } from "../../../modules/categorias/domain/ports/categorias-persistence.port";
 import { CategoriaNoEncontradaException } from "../../../modules/categorias/application/exceptions/categoria-no-encontrada.exception";
 
 @Injectable()
@@ -17,10 +17,10 @@ export class CreateProductoUseCase {
     constructor(
         @Inject(UNIT_OF_WORK_TOKEN)
         private readonly uow: IUnitOfWork,
-        @Inject(PRODUCTOS_REPOSITORY_TOKEN)
-        private readonly productosRepo: IProductosRepository,
-        @Inject(CATEGORIAS_REPOSITORY_TOKEN)
-        private readonly categoriasRepo: ICategoriasRepository
+        @Inject(PRODUCTOS_PERSISTENCE_PORT)
+        private readonly productosRepo: ProductosPersistencePort,
+        @Inject(CATEGORIAS_PERSISTENCE_PORT)
+        private readonly categoriasRepo: CategoriasPersistencePort
     ) {}
 
     async execute(dto: CreateProductoDto): Promise<ProductoResponse> {

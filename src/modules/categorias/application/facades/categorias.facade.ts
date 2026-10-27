@@ -9,13 +9,15 @@ import {
 import { CreateCategoriaDto, UpdateCategoriaDto } from "../dtos";
 import { CategoriaResponse } from "../responses/categoria.response";
 
+import { CategoriasApplicationPort } from "../ports/categorias-application.port";
+
 @Injectable()
-export class CategoriasFacade {
+export class CategoriasFacade implements CategoriasApplicationPort {
     constructor(
         private readonly createCategoriaUseCase: CreateCategoriaUseCase,
         private readonly findOneCategoriaUseCase: FindOneCategoriaUseCase,
         private readonly findAllCategoriasUseCase: FindAllCategoriasUseCase,
-        private readonly updateCategoriaUseCase: UpdateCategoriaUseCase,
+        private readonly updateCategoriaUseCase: UpdateCategoriaUseCase
     ) {}
 
     async create(dto: CreateCategoriaDto): Promise<CategoriaResponse> {

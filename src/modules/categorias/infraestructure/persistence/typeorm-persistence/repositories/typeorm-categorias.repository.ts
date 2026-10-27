@@ -1,12 +1,12 @@
 import { Categoria } from "../../../../domain/entities/categoria.entity";
-import { ICategoriasRepository } from "../../../../domain/repositories/categorias.repository.interface";
+import { CategoriasPersistencePort } from "../../../../domain/ports/categorias-persistence.port";
 import { CategoriaEntity } from "../entities/categoria.orm-entity";
 import { CategoriaOrmMappers } from "../mappers/categoria-orm.mapper";
 import { GestorEntityManager } from "../../../../../../common/infraestructure/typeorm-uow/gestor-entity-manager";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class TypeOrmCategoriasRepository implements ICategoriasRepository {
+export class TypeOrmCategoriasRepository implements CategoriasPersistencePort {
     constructor(
         private readonly repo: GestorEntityManager
     ) {}

@@ -1,8 +1,8 @@
 import { Producto } from "../entities/producto.entity";
 
-export const PRODUCTOS_REPOSITORY_TOKEN = Symbol('IProductosRepository');
+export const PRODUCTOS_PERSISTENCE_PORT = Symbol('ProductosPersistencePort');
 
-export interface IProductosRepository {
+export interface ProductosPersistencePort {
     create(data: Producto): Promise<Producto>;
     findAll(activo?: boolean): Promise<Producto[]>;
     findOneById(id: number): Promise<Producto | null>;
