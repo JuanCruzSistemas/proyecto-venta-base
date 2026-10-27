@@ -1,23 +1,17 @@
-import { Inject, Injectable } from "@nestjs/common";
-
-import { type ProductosPersistencePort, PRODUCTOS_PERSISTENCE_PORT } from "../../domain/ports/productos-persistence.port";
+import { Injectable } from "@nestjs/common";
 
 import { ProductoResponse } from "../responses/producto.response";
 import { ProductoResponseMapper } from "../mappers/producto-response.mapper";
-import { ProductoNoEncontradoException } from "../exceptions/producto-no-encontrado.exception";
+import { ProductosFinder } from "../services/productos.finder";
 
 @Injectable()
 export class FindOneProductoUseCase {
     constructor(
-        @Inject(PRODUCTOS_PERSISTENCE_PORT)
-        private readonly repo: ProductosPersistencePort
+        private readonly finder: ProductosFinder
     ) {}
 
     async execute(id: number): Promise<ProductoResponse> {
-        const producto = await this.repo.findOneById(id);
-        if (!producto) {
-            throw new ProductoNoEncontradoException();
-        }
+        const producto = await this.finder.findById(id);
         return ProductoResponseMapper.toResponse(producto);
     }
 }

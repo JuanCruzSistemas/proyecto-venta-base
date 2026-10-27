@@ -6,6 +6,8 @@ import { CategoriasPersistenceModule } from "./infraestructure/persistence/prism
 import { CategoriasController } from "./infraestructure/presentation/controllers/categorias.controller";
 import { DeleteCategoriaModule } from "../../processes/delete-categoria/delete-categoria.module";
 import { CATEGORIAS_APPLICATION_PORT } from "./application/ports/categorias-application.port";
+import { CategoriaExistenceValidator } from "./application/services/categoria-existence.validator";
+import { CategoriasFinder } from "./application/services/categorias.finder";
 // import { TypeOrmCategoriasPersistenceModule } from "./infraestructure/persistence/typeorm-persistence/categoria-persistence.module";
 
 @Module({
@@ -15,6 +17,8 @@ import { CATEGORIAS_APPLICATION_PORT } from "./application/ports/categorias-appl
         DeleteCategoriaModule
     ],
     providers: [
+        CategoriaExistenceValidator,
+        CategoriasFinder,
         CreateCategoriaUseCase,
         FindOneCategoriaUseCase,
         FindAllCategoriasUseCase,

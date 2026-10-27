@@ -7,6 +7,7 @@ import { ProductosPersistenceModule } from "./infraestructure/persistence/prisma
 import { ProductosController } from "./infraestructure/presentation/controllers/productos.controller";
 import { ManageProductoModule } from "../../processes/manage-producto/manage-producto.module";
 import { PRODUCTOS_APPLICATION_PORT } from "./application/ports/productos-application.port";
+import { ProductosFinder } from "./application/services/productos.finder";
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { PRODUCTOS_APPLICATION_PORT } from "./application/ports/productos-applic
         ManageProductoModule
     ],
     providers: [
+        ProductosFinder,
         FindOneProductoUseCase,
         FindAllProductosUseCase,
         ActivateProductoUseCase,
