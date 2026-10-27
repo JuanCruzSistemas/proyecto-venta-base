@@ -31,7 +31,6 @@ import { PRODUCTOS_APPLICATION_PORT } from "./application/ports/productos-applic
     exports: [
         // TypeOrmProductosPersistenceModule,
         ProductosPersistenceModule,
-        ProductosFacade,
         PRODUCTOS_APPLICATION_PORT
     ]
 })
